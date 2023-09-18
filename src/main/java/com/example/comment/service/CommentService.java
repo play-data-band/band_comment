@@ -3,6 +3,7 @@ package com.example.comment.service;
 
 import com.example.comment.domain.entity.Comment;
 import com.example.comment.domain.request.CommentRequest;
+import com.example.comment.domain.request.UserUpdateRequest;
 import com.example.comment.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -40,6 +41,11 @@ public class CommentService {
         Comment comment = commentRepository.findById(commentId)
                 .orElseThrow(() -> new RuntimeException("Comment not found"));
         comment.setContent(request.getContent());
+    }
+
+    @Transactional
+    public void memberUpdateInComment(Long memberId, UserUpdateRequest request){
+        commentRepository.updateMemberInComment(request, memberId);
     }
 
 }

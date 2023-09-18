@@ -2,6 +2,7 @@ package com.example.comment.controller;
 
 import com.example.comment.domain.entity.Comment;
 import com.example.comment.domain.request.CommentRequest;
+import com.example.comment.domain.request.UserUpdateRequest;
 import com.example.comment.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -34,5 +35,11 @@ public class CommentController {
     public void updateComment(@PathVariable("commentId") Long commentId,
                               @RequestBody CommentRequest request) {
         commentService.updateComment(commentId, request);
+    }
+
+    @PutMapping("updateMemberInComment/{memberId}")
+    public void memberUpdateInComment(@PathVariable("memberId") Long memberId,
+                                      @RequestBody UserUpdateRequest updateRequest)){
+    commentService.memberUpdateInComment(memberId, request);
     }
 }
